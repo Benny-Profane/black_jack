@@ -9,29 +9,49 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 <body>
-   <div id="container">
-      <h1>Black Jack</h1>
-    <button id="deal">DEAL</button>
-    <div id="table">
-      <div id="playerCards">
-      <div id="playerScore">Player Score is </div>
-      <div class="card sA"></div>
-      </div>
-      <br>
-      <br>
-      <div id="houseCards">
-      <div id="houseScore">House Score is </div>
 
-      </div>
+<div id="container">
+      <h1>Black Jack</h1>
     <br>
+      <button id="deal">DEAL</button>
     <br>
-    </div> <!--end table div-->
-    <button id="hit">HIT</button>
-    <button id="stay">STAY</button>
-    <button id="Five">$5</button>
-    <button id="Ten">$10</button>
-    <button id="Twenty">$20</button>
-   </div>
-<script src="js/main.js"
+    <table id="playerCardTable" class="board">
+      <tr><br>
+        <div id="playerScore">Player Score is... </div>
+        <td id="card1"><div class="card sA"></div></td>
+        <td id="card2"><div class="card sA"></td>
+        <td id="card3"><div class="card sA"></td>
+        <td id="card4"><div class="card sA"></td>
+        <td id="card5"><div class="card sA"></td>
+      </tr>
+      </table>
+      <table id="houseCardTable" class="board">
+      <tr><br>
+        <div id="hosueScore">House Score is... </div>
+        <td id="houseCard1"><div class="card sA"></td>
+        <td id="houseCard2"><div class="card sA"></td>
+        <td id="houseCard3"><div class="card sA"></td>
+        <td id="houseCard4"><div class="card sA"></td>
+        <td id="houseCard5"><div class="card sA"></td>
+      </tr>
+    </table>
+      <br>
+        <div id="buttonconsole">
+        <button id="hit">HIT</button>
+        <button id="stay">STAY</button>
+        <br><br>
+        <div id="bettingconsole"> Choose betting amount
+        <button id="Five">$5</button>
+        <button id="Ten">$10</button>
+        <button id="Twenty">$20</button>
+        </div>
+        <br><br>
+        <div id="playerTotal"> Your Total is $ __</div>
+        <div id="playerBet">Your bet is $__</div>
+        </div>
+      </div><!-- end container div-->
+    <br>
+
+<script src="js/main.js"></script>
 </body>
 </html>
