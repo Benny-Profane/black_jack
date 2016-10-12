@@ -19,16 +19,14 @@ var win = false
 var tie = false
 
 // Betting Logic
-var bet = function(amount) {
-  // playerBetTotal must be > 0
+function bet(amount) {
+  if (playerBetTotal === 0) {
+   alert("you are out of money")
+  }
   playerBetTotal -= amount
   bettingPool = amount
   return playerBetTotal
 }
-
-//  Use Jquery events to:
-//  1) Dynamically change playerBet HTML with new value from Bet win/loss
-
 
 //Function which returns numeric values from deckCssVals
 function getCardValue(cssValue) {
@@ -78,6 +76,8 @@ var startGame = function () {
 //Deal another card to Player Array
 var hitPlayer = function() {
     deal(player);
+    addCards(player);
+    console.log("New Player Score is " + addCards(player));
 }
 
 //Add Numeric Values within Player Array and House Array
@@ -90,6 +90,11 @@ var addCards = function(person) {
   }, 0);
 }
 
+function cardLog() {
+  console.log("Player Score is " + addCards(player));
+  console.log("House Score is " + addCards(house));
+}
+
 //Set addCards output to global variables playerScore & houseScore
 var setScores = function() {
   playerScore = addCards(player);
@@ -100,30 +105,40 @@ var setScores = function() {
 var hitHouse = function() {
   if (houseScore < 17) {
     deal(house);
+    console.log("New House Score is " + addCards(house))
+  }
+  if (houseScore < 17) {
+    deal(house);
+    console.log("New House Score is " + addCards(house))
   }
 }
 
 //Compare playerScore with HouseScore
 var compareCards = function() {
-    if (playerScore > houseScore && playerScore < 22) {
-      console.log("You Win!")
+    if (playerScore < 22 && (playerScore > houseScore || houseScore > 22)) {
+      console.log("You Win!");
+      alert("You Win!");
       win = true;
       playerBetTotal += bettingPool * 2
-     } else if (houseScore > playerScore && houseScore < 22) {
+     } else if (houseScore < 22 && (playerScore > 22 || houseScore < playerScore || houseScore > playerScore)) {
       console.log("The House Wins!");
+      alert("The House Wins!");
       gameOver();
-     } else {
+      playerBetTotal
+     } else if (houseScore === playerScore) {
       tie = true;
-      console.log('TIE')
+      console.log('TIE');
+      alert("It's a Tie!");
       playerBetTotal += bettingPool
-    }
+     }
 }
 
 //Reset/Reshuffle the deck/player/house array
 var restart = function() {
   player = [];
   house = [];
-  deck = [];
+  deck = deckCssVals;
+  createDeck();
 }
 
 //function expression
@@ -133,35 +148,76 @@ function gameOver() {
   }
 }
 
+createDeck();
 // View
+//  Use Jquery events to:
+//  1) Dynamically change playerBet HTML with new value from Bet win/loss
 
 $('#deal').on('click', function(){
    alert('Cards Dealt')
    startGame();
+   renderdeck();
+   cardLog();
    addCards(player);
    addCards(house);
+   setScores();
 });
 
 $('#hit').on('click', function(){
    alert('Player hits')
    hitPlayer();
+   setScores();
+   renderAfterHitPlayer();
 });
 
 $('#stay').on('click', function() {
     alert('Comparing Cards')
-    setScores();
     hitHouse();
+    renderAfterHitHouse();
+    // hitHouse();
+    // hitHouse();
+    setScores();
     compareCards();
+    restart();
+    console.log(playerBetTotal)
 });
 
+$('#five').on('click', function(){
+  bet(5);
+  console.log(playerBetTotal);
+})
 
-function render() {
+$('#ten').on('click', function(){
+  bet(10);
+  console.log(playerBetTotal);
+})
+
+$('#twenty').on('click', function(){
+  bet(20);
+  console.log(playerBetTotal);
+})
+
+function renderdeck() {
 
   for (var i=0; i < player.length; i++) {
     $('.player').eq(i).removeClass('back-blue').addClass(player[i].cssName)
   }
 
   for (var i=0; i < house.length; i++) {
-    $('.house').eq(i).removeClass('back-blue').addClass(house[i].cssName)
+    $('.house').eq(0).removeClass('back-blue').addClass(house[0].cssName)
+  }
+}
+
+function renderAfterHitPlayer() {
+
+  for (var i=0; i < player.length; i++) {
+    $('.player').eq(i).removeClass('outline').addClass(player[i].cssName)
+  }
+}
+
+function renderAfterHitHouse() {
+    $('.house').eq(1).removeClass('back-blue').addClass(house[1].cssName)
+  for (var i=0; i < house.length; i++) {
+    $('.house').eq(i).removeClass('outline').addClass(house[i].cssName)
   }
 }

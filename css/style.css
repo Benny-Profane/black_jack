@@ -1,5 +1,9 @@
 body{
-  /*background-image: url("poker_table.jpg");*/
+  /*background-image: url("trumpA.jpg");*/
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   /*background-repeat: repeat-y;*/
   /*margin: 0 auto 0;*/
 }
@@ -9,7 +13,7 @@ body{
   width: 500px;
   margin: 0 auto 0;
   font-weight: bold;
-  color: white;
+  color: black;
   /*background-color: green;*/
 }
 
