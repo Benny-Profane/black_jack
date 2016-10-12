@@ -1,13 +1,12 @@
 console.log("LINKED");
 
-// (Need multiple state possibilities for Ace)
 // Model: Data Model
 
 var house = [];
 var player = [];
 var deck = [];
-var houseScore;  // Must be between 17-21, otherwise automatic HIT after user has chosen STAY.
-var playerScore; // Must be between 4-21, user interaction determines HIT or STAY
+var houseScore;
+var playerScore;
 var deckCssVals = [
   'd02', 'd03', 'd04', 'd05', 'd06', 'd07', 'd08', 'd09', 'd10', 'dJ', 'dQ', 'dK', 'dA',
   'c02', 'c03', 'c04', 'c05', 'c06', 'c07', 'c08', 'c09', 'c10', 'cJ', 'cQ', 'cK', 'cA',
@@ -40,6 +39,7 @@ class Card {
 
 //Model: Game Behavior
 
+//Creates Deck
 function createDeck() {
   var holder = [];
   for (var i = 0; i < deckCssVals.length; i++) {
@@ -48,12 +48,14 @@ function createDeck() {
   deck = holder;
 }
 
+//Randomize Card Values
 var deal = function(hand) {
   var card = Math.floor(Math.random() * deck.length)
   var splicedCard = deck.splice(card, 1)[0];
   hand.push(splicedCard);
 }
 
+//Deals Two Random Card Values from Deck Array to House Array and Player Array
 var startGame = function () {
   deal(player);
   deal(player);
@@ -61,13 +63,12 @@ var startGame = function () {
   deal(house);
 }
 
+//Deal another card to Player Array
 var hitPlayer = function() {
     deal(player);
 }
 
-//
-//
-
+//Add Values within Player Array and House Array
 var addCards = function(person) {
   return person.sort((a,b) => a.value - b.value).reduce(function(a, b) {
     if (b.value === 11 && (a + 11) > 21) {
@@ -77,20 +78,35 @@ var addCards = function(person) {
   }, 0);
 }
 
-// compareCards is triggered by Stay Button
+//Set addCards scores to global variables playerScore & houseScore
+var setScores = function(player, house) {
+  playerScore = addCards(player);
+  houseScore  = addCards(house);
+}
 
-var compareCards = function(addPlayerCards, addHouseCards) {
-      if (addPlayerCards > addHouseCards && addPlayerCards < 21) {
-       console.log("You Win!")
-      } else if
-       (addHouseCards > addPlayerCards && addHouseCards < 21) {
-       console.log("The House Wins!")
-      }
-     }
+//Deal card to House Array
+var hitHouse = function() {
+  if (houseScore < 17) {
+    deal(house);
+  }
+}
 
-// var gameOver = function() {
-//   if (playerBetTotal === 0) { alert("GAME OVER!")}
-// } //reset board
+//Compare playerScore with HouseScore
+var compareCards = function() {
+    if ((playerScore > houseScore && houseScore < 22) && playerScore < 21) {
+      console.log("You Win!")
+     } else if (houseScore > playerScore && houseScore < 22) {
+      console.log("The House Wins!")
+     } else {console.log('TIE')}
+}
+
+//Reset/Reshuffle the deck/player/house array
+var restart = function() {
+  player = [];
+  house = [];
+  deck = [];
+}
+
 
 // // View
 // Funcitons for Rendering
