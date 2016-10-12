@@ -20,19 +20,14 @@ var tie = false
 
 // Betting Logic
 var bet = function(amount) {
-  playerBetTotal - amount
+  // playerBetTotal must be > 0
+  playerBetTotal -= amount
+  bettingPool = amount
   return playerBetTotal
 }
 
-var five = 5
-var ten = 10
-var twenty = 20
-
 //  Use Jquery events to:
-//  deduct the betting amount from playerBetTotal
-//
-//  after compareCards functin has been invoked, and if player wins
-//  take bettingPool and multiply amount by 2 and add to playerBetTotal
+//  1) Dynamically change playerBet HTML with new value from Bet win/loss
 
 
 //Function which returns numeric values from deckCssVals
@@ -40,11 +35,9 @@ function getCardValue(cssValue) {
   if (cssValue.length > 2) {
     var numbers = cssValue.substr(cssValue.length -2)
     return parseInt(numbers)
-  }
-  else if (cssValue.slice(1) === 'A') {
+  } else if (cssValue.slice(1) === 'A') {
     return 11
-  }
-  else {
+  } else {
     return 10
   }
 }
@@ -98,7 +91,7 @@ var addCards = function(person) {
 }
 
 //Set addCards output to global variables playerScore & houseScore
-var setScores = function(player, house) {
+var setScores = function() {
   playerScore = addCards(player);
   houseScore  = addCards(house);
 }
@@ -114,12 +107,17 @@ var hitHouse = function() {
 var compareCards = function() {
     if (playerScore > houseScore && playerScore < 22) {
       console.log("You Win!")
+      win = true;
+      playerBetTotal += bettingPool * 2
      } else if (houseScore > playerScore && houseScore < 22) {
-      console.log("The House Wins!")
-     } else {console.log('TIE')}
+      console.log("The House Wins!");
+      gameOver();
+     } else {
+      tie = true;
+      console.log('TIE')
+      playerBetTotal += bettingPool
+    }
 }
-
-
 
 //Reset/Reshuffle the deck/player/house array
 var restart = function() {
@@ -128,38 +126,42 @@ var restart = function() {
   deck = [];
 }
 
-// Deal button should trigger these functions in order
-// var buttonDeal = function() {
-// createDeck();
-// startGame();
-// addCards(player);
-// addCards(house);
-// setScores(player, house);
-// }
-
-// Hit button should trigger this event
-// hitPlayer();
-
-// Stay button should trigger these functions in order
-// hitHouse();
-// compareCards();
+//function expression
+function gameOver() {
+  if (playerBetTotal === 0) {
+    alert('GAME OVER')
+  }
+}
 
 // View
-// Funcitons for Rendering
-// Jquery event handlers for DEAL/HIT/STAY & Betting buttons
-//NOTES: Use Jquery to loop through House array....Add class to cards...
 
-// $('#deal').on('click', createdeck(); startGame(); addCards(player); addCards(house); setScores(player, house););
-$('#hit').on('click', hitPlayer());
-$('#stay').on('click', compareCards());
+$('#deal').on('click', function(){
+   alert('Cards Dealt')
+   startGame();
+   addCards(player);
+   addCards(house);
+});
+
+$('#hit').on('click', function(){
+   alert('Player hits')
+   hitPlayer();
+});
+
+$('#stay').on('click', function() {
+    alert('Comparing Cards')
+    setScores();
+    hitHouse();
+    compareCards();
+});
+
 
 function render() {
 
   for (var i=0; i < player.length; i++) {
-    $('.player').eq(i).addClass(player[i].cssName)
+    $('.player').eq(i).removeClass('back-blue').addClass(player[i].cssName)
   }
 
   for (var i=0; i < house.length; i++) {
-    $('.house').eq(i).addClass(house[i].cssName)
+    $('.house').eq(i).removeClass('back-blue').addClass(house[i].cssName)
   }
 }
