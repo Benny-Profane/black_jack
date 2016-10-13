@@ -2,7 +2,7 @@
 
 ####Trump vs Replicants in: Bankruptcy-Jack
 
-###Prelogue 
+###Prologue 
 
 The year is 2019 and Replicants have taken over the abandonded Trump Taj Mahal Resort and Casino in Atlantic City, NJ.
 
