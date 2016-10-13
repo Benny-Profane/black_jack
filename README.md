@@ -10,7 +10,7 @@ Trump's robotic henchmen start scanning binders full of previous lawsuits to see
 
 "Believe me," boasts Trump, "those Replicants are losers."
 
-Across the gilded hallway with marble-tiles, Trump Jr. knows this is serious... "Dad, our cybernetic beauty pagent interns are in need of serious repairs. Have you been kissing them again? I told you that messes with their circuitry." 
+Across the gilded hallway lined with tacky faux-marble-tiles, Trump Jr. knows this is serious... "Dad, our cybernetic beauty pagent interns are in need of serious repairs. Have you been kissing them again? I told you that messes with their circuitry." 
 
 "What are you talking about? Nobody has greater respect for cybernetic beauty pagent interns. NOBODY."
 
@@ -26,4 +26,4 @@ The Replicant Dealer must automatically hit if his hand is below 17.
 
 The Replicants have provided you $200 USD in their own digital Chin-Yen currency.
 
-Use your self-acknowledged superiorty to beat down on these Replicants or you will permanently lose your ownership in Taj Mahal Casino for a second time and your malfunctioning cybernetic beauty pagents interns will never respect you again.
+Use your self-acknowledged superiorty to beat down on these Replicants or you will permanently lose your ownership in Taj Mahal Casino for a second time and your malfunctioning cybernetic beauty pagents interns will never respect.
