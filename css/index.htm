@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)file:///Users/james/code/wdi/black_jack/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <link rel="stylesheet" href="./index_files/style.css">
+  <link rel="stylesheet" href="./index_files/cardstarter.min.css">
+  <script src="./index_files/jquery.min.js"></script>
+</head>
+<body>
+
+<div id="container">
+      <h1>bANKrUPTCY-JACK</h1>
+    <br>
+    <!-- <img id="trumploses" src="css.trumploses.jpg"> -->
+      <button id="deal">DEAL</button>
+
+    <br>
+    <br><div id="playerScoreHTML">Player Score is 0</div><br>
+        TrUMP'S HAND
+        <table id="playerCardTable" class="board">
+      <tbody><tr>
+        
+        <td id="card1"><div class="player card back-blue"></div></td>
+        <td id="card2"><div class="player card back-blue"></div></td>
+        <td id="card3"><div class="player card outline"></div></td>
+        <td id="card4"><div class="player card outline"></div></td>
+        <td id="card5"><div class="player card outline"></div></td>
+      </tr>
+      </tbody></table>
+      <br><div id="hosueScoreHTML"></div>
+        rEPLICANTS'S HAND
+        <table id="houseCardTable" class="board">
+      <tbody><tr>
+        <td id="houseCard1"><div class="house card back-blue"></div></td>
+        <td id="houseCard2"><div class="house card back-blue"></div></td>
+        <td id="houseCard3"><div class="house card outline"></div></td>
+        <td id="houseCard4"><div class="house card outline"></div></td>
+        <td id="houseCard5"><div class="house card outline"></div></td>
+      </tr>
+    </tbody></table>
+      <br>
+        <div id="buttonconsole">
+        <button id="hit">HIT</button>
+        <button id="stay">STAY</button>
+        <br><br>
+        <div id="bettingconsole"> Choose betting amount
+        <button id="five" class="chip">$5</button>
+        <button id="ten" class="chip">$10</button>
+        <button id="twenty" class="chip">$20</button>
+        </div>
+        <br><br>
+        <div id="playerTotal">Your Current Total is 0</div>
+        <div id="playerBet">Your Bet is 200</div>
+      <button id="reshuffle">RESHUFFLE</button>
+        </div>
+      </div><!-- end container div-->
+    <br>
+
+<script src="./index_files/main.js"></script>
+
+
+</body></html>

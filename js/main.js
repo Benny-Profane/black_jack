@@ -2,6 +2,8 @@ console.log("LINKED");
 
 // Model: Data Model
 
+$('#loses').hide();
+
 var house = [];
 var player = [];
 var deck = [];
@@ -20,8 +22,9 @@ var tie = false
 
 // Betting Logic
 function bet(amount) {
-  if (playerBetTotal < 0) {
-    //disable betting logic
+  console.log(playerBetTotal <= 0, playerBetTotal - amount <= 0)
+  if (playerBetTotal - amount < 0) {
+    return false
   }
   if (playerBetTotal === 0) {
    alert("you are out of money")
@@ -139,11 +142,13 @@ var restart = function() {
 //function expression gameover/window.reload
 function gameOver() {
   if (playerBetTotal === 0) {
-    alert('GAME OVER')
-      function reload() {
+    // alert('GAME OVER')
+    $("#loses").fadeIn(3000);
+
+       function reload() {
        setTimeout(function(){
        window.location.reload(1);
-       }, 5000);
+       }, 6000);
       }
   }
 }
@@ -153,7 +158,6 @@ createDeck();
 // View
 
 $('#deal').on('click', function(){
-   // alert('Cards Dealt')
    startGame();
    renderdeck();
    addCards(player);
@@ -180,15 +184,13 @@ function renderPlayerBet() {
 }
 
 $('#hit').on('click', function(){
-   // alert('Player hits')
    hitPlayer();
-   // setScores();
+   setScores();
    renderAfterFirstHitPlayer();
-   // renderPlayerScore();
+   renderPlayerScore();
 });
 
 $('#stay').on('click', function() {
-    // alert('Comparing Cards')
     hitHouse();
     renderAfterHitHouse();
     setScores();
@@ -212,6 +214,10 @@ $('#ten').on('click', function(){
 $('#twenty').on('click', function(){
   bet(20);
   console.log(playerBetTotal);
+})
+
+$('#reshuffle').on('click', function(){
+   reshuffle();
 })
 
 function renderdeck() {
@@ -258,6 +264,21 @@ function renderAfterHitHouse() {
 
 //reshuffle
 // function reshuffle(){
+
+function reshuffle() {
+
+    $('.player').eq(0).removeClass(cssName).addClass(player[0]('back-blue'))
+    $('.player').eq(1).removeClass(cssName).addClass(player[1]('back-blue'))
+    $('.player').eq(2).removeClass(cssName).addClass(player[2]('outline'))
+    $('.player').eq(3).removeClass(cssName).addClass(player[3]('outline'))
+    $('.player').eq(4).removeClass(cssName).addClass(player[4]('outline'))
+
+    $('.house').eq(0).removeClass().addClass(house[0]('back-blue'))
+    $('.house').eq(1).removeClass().addClass(house[1]('back-blue'))
+    $('.house').eq(2).removeClass().addClass(house[2]('outline'))
+    $('.house').eq(3).removeClass().addClass(house[3]('outline'))
+    $('.house').eq(4).removeClass().addClass(house[4]('outline'))
+  }
 
 //   for (var i=0; i < player.length; i++) {
 //     $('.player').eq(i).removeClass(cssName).addClass(player[0,1].('black-blue'))

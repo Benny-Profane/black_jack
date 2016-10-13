@@ -13,15 +13,18 @@ body{
     font-weight:400;
 }
 
+#loses {
+  position: relative;
+}
 
 #container {
+  position: relative;
   font-family: anything;
   height: 500px;
   width: 500px;
   margin: 0 auto 0;
   font-weight: bold;
   color: white;
-  /*background-color: green;*/
 }
 
  button {
