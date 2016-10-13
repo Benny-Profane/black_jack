@@ -6,25 +6,30 @@ var house = [];
 var player = [];
 var deck = [];
 var houseScore;
-var playerScore;
+var playerScore = 0;
 var deckCssVals = [
   'd02', 'd03', 'd04', 'd05', 'd06', 'd07', 'd08', 'd09', 'd10', 'dJ', 'dQ', 'dK', 'dA',
   'c02', 'c03', 'c04', 'c05', 'c06', 'c07', 'c08', 'c09', 'c10', 'cJ', 'cQ', 'cK', 'cA',
   's02', 's03', 's04', 's05', 's06', 's07', 's08', 's09', 's10', 'sJ', 'sQ', 'sK', 'sA',
   'h02', 'h03', 'h04', 'h05', 'h06', 'h07', 'h08', 'h09', 'h10', 'hJ', 'hQ', 'hK', 'hA'
 ];
-var playerBetTotal = 200
-var bettingPool;
+var playerBetTotal = 200;
+var bettingPool = 0;
 var win = false
 var tie = false
 
 // Betting Logic
 function bet(amount) {
+  if (playerBetTotal < 0) {
+    //disable betting logic
+  }
   if (playerBetTotal === 0) {
    alert("you are out of money")
   }
   playerBetTotal -= amount
-  bettingPool = amount
+  bettingPool += amount
+  renderBetPool();
+  renderPlayerBet();
   return playerBetTotal
 }
 
@@ -76,8 +81,7 @@ var startGame = function () {
 //Deal another card to Player Array
 var hitPlayer = function() {
     deal(player);
-    addCards(player);
-    console.log("New Player Score is " + addCards(player));
+    // debugger;
 }
 
 //Add Numeric Values within Player Array and House Array
@@ -88,11 +92,6 @@ var addCards = function(person) {
     }
     return a + b.value;
   }, 0);
-}
-
-function cardLog() {
-  console.log("Player Score is " + addCards(player));
-  console.log("House Score is " + addCards(house));
 }
 
 //Set addCards output to global variables playerScore & houseScore
@@ -107,20 +106,16 @@ var hitHouse = function() {
     deal(house);
     console.log("New House Score is " + addCards(house))
   }
-  if (houseScore < 17) {
-    deal(house);
-    console.log("New House Score is " + addCards(house))
-  }
 }
 
 //Compare playerScore with HouseScore
 var compareCards = function() {
-    if (playerScore < 22 && (playerScore > houseScore || houseScore > 22)) {
+    if ((playerScore < 22) && (houseScore >= 22 || playerScore > houseScore)) {
       console.log("You Win!");
       alert("You Win!");
       win = true;
       playerBetTotal += bettingPool * 2
-     } else if (houseScore < 22 && (playerScore > 22 || houseScore < playerScore || houseScore > playerScore)) {
+     } else if ((houseScore < 22) && (playerScore >= 22) || (houseScore > playerScore)) {
       console.log("The House Wins!");
       alert("The House Wins!");
       gameOver();
@@ -141,43 +136,65 @@ var restart = function() {
   createDeck();
 }
 
-//function expression
+//function expression gameover/window.reload
 function gameOver() {
   if (playerBetTotal === 0) {
     alert('GAME OVER')
+      function reload() {
+       setTimeout(function(){
+       window.location.reload(1);
+       }, 5000);
+      }
   }
 }
 
 createDeck();
+
 // View
-//  Use Jquery events to:
-//  1) Dynamically change playerBet HTML with new value from Bet win/loss
 
 $('#deal').on('click', function(){
-   alert('Cards Dealt')
+   // alert('Cards Dealt')
    startGame();
    renderdeck();
-   cardLog();
    addCards(player);
    addCards(house);
    setScores();
+   renderPlayerScore();
+   renderBetPool();
+   renderPlayerBet();
 });
 
+renderPlayerScore();
+renderBetPool();
+renderPlayerBet();
+
+function renderPlayerScore() {
+  $('#playerScoreHTML').text("Player Score is " + playerScore)
+}
+function renderBetPool() {
+$('#playerBet').html("Your Bet is " + bettingPool)
+}
+
+function renderPlayerBet() {
+  $('#playerTotal').text("Your Current Total is " + playerBetTotal)
+}
+
 $('#hit').on('click', function(){
-   alert('Player hits')
+   // alert('Player hits')
    hitPlayer();
-   setScores();
-   renderAfterHitPlayer();
+   // setScores();
+   renderAfterFirstHitPlayer();
+   // renderPlayerScore();
 });
 
 $('#stay').on('click', function() {
-    alert('Comparing Cards')
+    // alert('Comparing Cards')
     hitHouse();
     renderAfterHitHouse();
-    // hitHouse();
-    // hitHouse();
     setScores();
     compareCards();
+    renderBetPool();
+    renderPlayerBet();
     restart();
     console.log(playerBetTotal)
 });
@@ -203,21 +220,54 @@ function renderdeck() {
     $('.player').eq(i).removeClass('back-blue').addClass(player[i].cssName)
   }
 
-  for (var i=0; i < house.length; i++) {
-    $('.house').eq(0).removeClass('back-blue').addClass(house[0].cssName)
-  }
+  $('.house').eq(0).removeClass('back-blue').addClass(house[0].cssName)
 }
 
-function renderAfterHitPlayer() {
+// function renderAfterHitPlayer() {
 
-  for (var i=0; i < player.length; i++) {
-    $('.player').eq(i).removeClass('outline').addClass(player[i].cssName)
+//   for (var i=0; i < player.length; i++) {
+//     $('.player').eq(i).removeClass('outline').addClass(player[i].cssName)
+//   }
+// }
+
+function renderAfterFirstHitPlayer() {
+    $('.player').eq(2).removeClass('outline').addClass(player[2].cssName)
   }
-}
+
+// function renderAfterSecondHitPlayer() {
+//     $('.player').eq(3).removeClass('outline').addClass(player[3].cssName)
+//   }
+// function renderAfterThirdHitPlayer() {
+//     $('.player').eq(4).removeClass('outline').addClass(player[4].cssName)
+//   }
 
 function renderAfterHitHouse() {
+
     $('.house').eq(1).removeClass('back-blue').addClass(house[1].cssName)
   for (var i=0; i < house.length; i++) {
     $('.house').eq(i).removeClass('outline').addClass(house[i].cssName)
   }
 }
+
+
+
+// $('#reshuffle').on('click', function() {
+//   reshuffle();
+// })
+
+
+//reshuffle
+// function reshuffle(){
+
+//   for (var i=0; i < player.length; i++) {
+//     $('.player').eq(i).removeClass(cssName).addClass(player[0,1].('black-blue'))
+//   }
+// }
+
+  //   .addClass(player[2,3,4].('outline'))
+  // }
+
+//   for (var i=0; i < house.length; i++) {
+//     $('.house').eq(i).removeClass().addClass(house[0,1].('black-blue')).addClass(house[2,3,4].('outline'))
+//   }
+// }
