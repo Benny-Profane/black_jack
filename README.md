@@ -26,4 +26,4 @@ The Replicant Dealer must automatically hit if his hand is below 17.
 
 The Replicants have provided you $200 USD in their own digital Chin-Yen currency.
 
-Use your self-acknowledged superiorty to beat down on these Replicants or you will permanently lose your ownership in Taj Mahal Casino for a second time and your malfunctioning cybernetic beauty pagents interns will never respect.
+Use your self-acknowledged superiorty to beat down on these Replicants or you will permanently lose your ownership in Taj Mahal Casino for a second time and your malfunctioning cybernetic beauty pagents interns will never respect you.
