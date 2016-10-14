@@ -89,7 +89,7 @@ var hitPlayer = function() {
 
 //Add Numeric Values within Player Array and House Array
 var addCards = function(person) {
-  return person.sort((a,b) => a.value - b.value).reduce(function(a, b) {
+  return person.concat().sort((a,b) => a.value - b.value).reduce(function(a, b) {
     if (b.value === 11 && (a + 11) > 21) {
       return a + 1;
     }
@@ -144,7 +144,6 @@ function gameOver() {
   if (playerBetTotal === 0) {
     // alert('GAME OVER')
     $("#loses").fadeIn(3000);
-
        function reload() {
        setTimeout(function(){
        window.location.reload(1);
