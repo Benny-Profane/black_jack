@@ -15,6 +15,7 @@ body{
 
 #loses {
   position: relative;
+  margin: auto;
 }
 
 #container {
