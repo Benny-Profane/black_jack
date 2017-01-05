@@ -1,9 +1,10 @@
+//Check for JS
 console.log("LINKED");
 
-// Model: Data Model
-
+// Prevents losing image from showing
 $('#loses').hide();
 
+// Model: Data Model
 var house = [];
 var player = [];
 var deck = [];
@@ -27,7 +28,7 @@ function bet(amount) {
     return false
   }
   if (playerBetTotal === 0) {
-   alert("you are out of money")
+   alert("You are out of money!")
   }
   playerBetTotal -= amount
   bettingPool += amount
