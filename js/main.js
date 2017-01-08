@@ -1,8 +1,7 @@
-//Check for JS
-console.log("LINKED");
+/////////////////////////////////////
+///PASSING THE VOIGHT-KAMPFF TEST////
+/////////////////////////////////////
 
-// Prevents losing image from showing
-$('#loses').hide();
 
 // Model: Data Model
 var house = [];
@@ -49,14 +48,13 @@ function getCardValue(cssValue) {
   }
 }
 
+//Creation of the Cards
 class Card {
   constructor(cssName, value) {
     this.cssName = cssName;
     this.value = value;
   }
 }
-
-//Model: Game Behavior
 
 //Creates Deck
 function createDeck() {
@@ -156,6 +154,10 @@ createDeck();
 
 // View
 
+// Prevents losing image and audio from showing
+$('#loses').hide();
+$('#blade').hide();
+
 $('#deal').on('click', function(){
    startGame();
    renderdeck();
@@ -203,17 +205,14 @@ $('#stay').on('click', function() {
 
 $('#five').on('click', function(){
   bet(5);
-  console.log(playerBetTotal);
 })
 
 $('#ten').on('click', function(){
   bet(10);
-  console.log(playerBetTotal);
 })
 
 $('#twenty').on('click', function(){
   bet(20);
-  console.log(playerBetTotal);
 })
 
 $('#reshuffle').on('click', function(){
@@ -264,3 +263,4 @@ function reshuffle() {
     $(".house").eq(3).attr("class", "house card outline")
     $(".house").eq(4).attr("class", "house card outline")
 }
+
