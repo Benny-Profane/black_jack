@@ -1,8 +1,8 @@
 #Taj Mahal Casino Presents...
 
-####Trump vs Replicants in: Bankruptcy-Jack
+##Trump vs Replicants in: Bankruptcy-Jack
 
-####Technologies Used:
+###Technologies Used:
 
 ##HTML5 | CSS3 | Javascript | JQuery | Git | Github | 
 
