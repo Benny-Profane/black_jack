@@ -4,7 +4,11 @@
 
 ####Technologies Used:
 
-This project uses primarily Javascript and JQuery to create my own version of BlackJack.
+##HTML5 | CSS3 | Javascript | JQuery | Git | Github | 
+
+##Through this project I was thrust into the Javascript universe! (ﾉ◕ヮ◕)ﾉ*:・ﾟ✧  
+
+After much practice regarding game logic as well as Model - View separation, I started looking for a well know game to emulate. I choose Black Jack because it seemed like a challenging way for me to tackle various aspects of object oriented programming. I wanted to build out my own custom functionality as well as use built in Funciton Object methods such as map/reduce/filter that would give me deeper insight into Javascript datastuctures and prototypal inheritance. The end result is a BladeRunner themed version of BlackJack with dystopian undertones. 
 
 ###Prologue 
 
